@@ -29,7 +29,7 @@ function AppContent() {
   const isHome = location.pathname === "/";
 
   return (
-    <div className="min-h-screen bg-secondary flex flex-col justify-between selection:bg-gold selection:text-primary">
+    <div className="min-h-screen bg-secondary flex flex-col justify-between selection:bg-gold selection:text-white">
       <Navbar />
       {/* Remove padding top on home page so navbar overlays transparently */}
       <main className={`flex-grow ${isHome ? 'pt-0' : 'pt-20 md:pt-28'}`}>

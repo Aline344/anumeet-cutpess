@@ -335,7 +335,7 @@ export default function Account() {
 
         <div className="flex gap-3 shrink-0 w-full md:w-auto">
           {isAdmin && (
-            <Link to="/admin" className="px-5 py-2.5 bg-luxury-gold text-navy-950 font-bold text-xs uppercase tracking-wider rounded-xl text-center flex-grow md:flex-grow-0">
+            <Link to="/admin" className="px-5 py-2.5 bg-luxury-gold text-white font-bold text-xs uppercase tracking-wider rounded-xl text-center flex-grow md:flex-grow-0">
               Admin Area
             </Link>
           )}
@@ -375,7 +375,7 @@ export default function Account() {
                 className={`w-full text-left px-4 py-2.5 rounded-xl transition-colors cursor-pointer flex items-center justify-between ${activeTab === "sellerDesk" ? 'bg-navy-900 text-white' : 'hover:bg-slate-50 text-slate-600'}`}
               >
                 <span>🏢 Seller Desk</span>
-                <span className="bg-luxury-gold text-navy-950 font-bold text-[9px] px-2 py-0.5 rounded-full">{sellerProducts.length}</span>
+                <span className="bg-luxury-gold text-white font-bold text-[9px] px-2 py-0.5 rounded-full">{sellerProducts.length}</span>
               </button>
             )}
           </nav>
@@ -556,7 +556,7 @@ export default function Account() {
                         showToast("Could not upgrade account.", "error");
                       }
                     }}
-                    className="px-4 py-2.5 bg-luxury-gold hover:bg-gold text-navy-950 font-bold uppercase tracking-wider text-[9px] rounded-xl cursor-pointer shrink-0 transition-colors"
+                    className="px-4 py-2.5 bg-luxury-gold hover:bg-gold text-white font-bold uppercase tracking-wider text-[9px] rounded-xl cursor-pointer shrink-0 transition-colors"
                   >
                     🚀 Switch to Seller Role
                   </button>
@@ -823,7 +823,7 @@ export default function Account() {
 
                   <button 
                     type="submit" 
-                    className="px-6 py-3 bg-navy-900 hover:bg-gold text-white hover:text-navy-950 font-bold uppercase tracking-wider text-[10px] rounded-xl transition-all cursor-pointer shadow-md shadow-slate-900/10"
+                    className="px-6 py-3 bg-navy-900 hover:bg-gold text-white font-bold uppercase tracking-wider text-[10px] rounded-xl transition-all cursor-pointer shadow-md shadow-slate-900/10"
                   >
                     🚀 List Fabric Material to Catalog
                   </button>

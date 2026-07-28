@@ -41,7 +41,7 @@ export default function Footer() {
               href="https://instagram.com" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="p-2.5 bg-white/5 hover:bg-gold hover:text-primary transition-all rounded-lg text-slate-300 flex items-center justify-center border border-white/5 hover:border-gold" 
+              className="p-2.5 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-lg text-slate-300 flex items-center justify-center border border-white/5 hover:border-gold" 
               aria-label="Instagram"
             >
               <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -54,7 +54,7 @@ export default function Footer() {
               href="https://facebook.com" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="p-2.5 bg-white/5 hover:bg-gold hover:text-primary transition-all rounded-lg text-slate-300 flex items-center justify-center border border-white/5 hover:border-gold" 
+              className="p-2.5 bg-white/5 hover:bg-gold hover:text-white transition-all rounded-lg text-slate-300 flex items-center justify-center border border-white/5 hover:border-gold" 
               aria-label="Facebook"
             >
               <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@ export default function Footer() {
             />
             <button 
               type="submit" 
-              className="px-6 py-3 bg-gold hover:bg-gold-dark text-primary font-bold uppercase tracking-wider text-[10px] rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer"
+              className="px-6 py-3 bg-gold hover:bg-gold-dark text-white font-bold uppercase tracking-wider text-[10px] rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer"
             >
               Subscribe <Send size={12} />
             </button>
@@ -167,7 +167,7 @@ export default function Footer() {
         </div>
         <button
           onClick={scrollToTop}
-          className="p-2.5 border border-white/10 rounded-full hover:bg-gold hover:text-primary transition-all cursor-pointer group hover:border-gold"
+          className="p-2.5 border border-white/10 rounded-full hover:bg-gold hover:text-white transition-all cursor-pointer group hover:border-gold"
           aria-label="Scroll to top"
         >
           <ArrowUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />

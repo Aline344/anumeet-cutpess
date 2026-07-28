@@ -2,23 +2,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0F172A;
-  --color-secondary: #F8F5F0;
-  --color-gold: #D4AF37;
-  --color-text: #1E293B;
-  --color-muted: #64748B;
+  --color-primary: #121212;      /* Charcoal Black */
+  --color-secondary: #FFFFFF;    /* Pure White */
+  --color-gold: #B71C1C;         /* Vibrant Brand Red */
+  --color-gold-dark: #991B1B;    /* Dark Brand Red */
+  --color-text: #212121;         /* Off-Black Text */
+  --color-muted: #6B7280;        /* Muted Gray */
 
-  /* Legacy Navy mappings for compatibility */
-  --color-navy-950: #0F172A;
-  --color-navy-900: #0F172A;
-  --color-navy-800: #1E293B;
-  --color-navy-700: #334155;
-  --color-navy-100: #F8F5F0;
+  /* Mappings for compatibility */
+  --color-navy-950: #121212;
+  --color-navy-900: #1C1917;
+  --color-navy-800: #292524;
+  --color-navy-700: #44403C;
+  --color-navy-100: #F5F5F4;
   
-  --color-premium-red: #D4AF37;
-  --color-premium-red-hover: #B89025;
-  --color-luxury-gold: #D4AF37;
-  --color-luxury-gold-dark: #B89025;
+  --color-premium-red: #B71C1C;
+  --color-premium-red-hover: #991B1B;
+  --color-luxury-gold: #B71C1C;
+  --color-luxury-gold-dark: #991B1B;
   
   --font-poppins: 'Playfair Display', serif;
   --font-inter: 'Inter', sans-serif;
@@ -72,7 +73,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair);
+  font-family: var(--font-inter);
 }
 
 /* Luxury Scrollbar */
