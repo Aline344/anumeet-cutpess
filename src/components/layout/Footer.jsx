@@ -30,11 +30,11 @@ export default function Footer() {
             <Logo className="h-9 w-9 shrink-0" />
             <div className="flex flex-col">
               <span className="font-extrabold text-lg md:text-xl tracking-[0.15em] text-white leading-none font-playfair group-hover:text-gold transition-colors">ANUMEET</span>
-              <span className="text-[9px] font-bold tracking-[0.45em] text-gold uppercase leading-none mt-1">Katpiece</span>
+              <span className="text-[9px] font-bold tracking-[0.45em] text-gold uppercase leading-none mt-1">Cutpiece</span>
             </div>
           </div>
           <p className="text-xs text-slate-400 max-w-sm leading-relaxed font-inter">
-            Established in Bhopal, Madhya Pradesh, ANUMEET KATPIECE is Central India's premier wholesale and retail boutique fabric house. We source fine premium designer fabrics, Roman Silks, Bagh Handblock Prints, Rayon, and Chanderi straight from master craftsmen to dress boutiques nationwide.
+            Established in Bhopal, Madhya Pradesh, ANUMEET CUTPIECE is Central India's premier wholesale and retail boutique fabric house. We source fine premium designer fabrics, Roman Silks, Bagh Handblock Prints, Rayon, and Chanderi straight from master craftsmen to dress boutiques nationwide.
           </p>
           <div className="flex items-center gap-3 pt-2">
             <a 
@@ -141,7 +141,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Mail size={14} className="text-gold shrink-0" />
-              <a href="mailto:info@anumeetkatpiece.com" className="hover:text-gold transition-colors">info@anumeetkatpiece.com</a>
+              <a href="mailto:info@anumeetcutpiece.com" className="hover:text-gold transition-colors">info@anumeetcutpiece.com</a>
             </li>
             <li className="flex items-start gap-2">
               <Clock size={14} className="text-gold shrink-0 mt-0.5" />
@@ -157,7 +157,7 @@ export default function Footer() {
       {/* Bottom Footer Section */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-500 font-inter uppercase tracking-wider">
         <div>
-          <p>© {new Date().getFullYear()} ANUMEET KATPIECE Bhopal. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} ANUMEET CUTPIECE Bhopal. All Rights Reserved.</p>
           <p className="mt-1 text-slate-600 font-normal">Crafted with Luxury Fashion Quality & Premium Standards.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6">

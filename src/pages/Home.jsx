@@ -1176,7 +1176,7 @@ export default function Home() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail size={16} className="text-[#B71C1C] shrink-0" />
-                <a href="mailto:info@anumeetkatpiece.com" className="hover:text-[#B71C1C] transition-colors text-slate-700">info@anumeetkatpiece.com</a>
+                <a href="mailto:info@anumeetcutpiece.com" className="hover:text-[#B71C1C] transition-colors text-slate-700">info@anumeetcutpiece.com</a>
               </li>
               <li className="flex items-start gap-2.5">
                 <Clock size={16} className="text-[#B71C1C] shrink-0 mt-0.5" />

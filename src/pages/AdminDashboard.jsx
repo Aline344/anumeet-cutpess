@@ -597,7 +597,7 @@ export default function AdminDashboard() {
 
                   <div className="flex justify-end gap-2 pt-2 border-t border-slate-50">
                     <a 
-                      href={`https://wa.me/${inq.mobile.replace(/[^0-9]/g, "")}?text=Hello%20${inq.name},%20this%20is%20Anumeet%20Katpiece%20Bhopal%20responding%20to%20your%20B2B%20inquiry...`}
+                      href={`https://wa.me/${inq.mobile.replace(/[^0-9]/g, "")}?text=Hello%20${inq.name},%20this%20is%20Anumeet%20Cutpiece%20Bhopal%20responding%20to%20your%20B2B%20inquiry...`}
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold uppercase tracking-wider text-[10px] transition-colors"

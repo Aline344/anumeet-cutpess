@@ -17,12 +17,12 @@ export default function About() {
         <div className="lg:col-span-7 space-y-6">
           <div className="space-y-2">
             <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-red-600">The Boutique Roots</span>
-            <h1 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-navy-900 leading-tight">ANUMEET KATPIECE</h1>
+            <h1 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-navy-900 leading-tight">ANUMEET CUTPIECE</h1>
             <h2 className="text-base md:text-lg font-bold text-luxury-gold uppercase tracking-wider">Fine Fabrics House since years of trust in Bhopal</h2>
             <div className="h-0.5 w-12 bg-luxury-gold"></div>
           </div>
           <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
-            Located in the heart of Bhopal at Makan No. 13, Subhash Nagar, ANUMEET KATPIECE began with a simple vision: to bridge the gap between regional handloom weavers and modern fashion boutiques. Sourcing finest quality dress materials, Rayons, Roman Silks, Bagh block prints, and detailed border laces, we became a trusted household name for garment manufacturers and fashion designers alike.
+            Located in the heart of Bhopal at Makan No. 13, Subhash Nagar, ANUMEET CUTPIECE began with a simple vision: to bridge the gap between regional handloom weavers and modern fashion boutiques. Sourcing finest quality dress materials, Rayons, Roman Silks, Bagh block prints, and detailed border laces, we became a trusted household name for garment manufacturers and fashion designers alike.
           </p>
           <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
             Whether you are crafting a single custom lehenga or cutting fabric volumes for a regional fashion startup, our dual pricing metrics (Retail + B2B Wholesale) allow buyers to sample swatches easily and purchase custom volumes without massive investment outlays.

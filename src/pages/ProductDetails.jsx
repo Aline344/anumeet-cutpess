@@ -98,7 +98,7 @@ export default function ProductDetails() {
     const priceStr = wholesaleMode 
       ? `Wholesale Rate: ₹${product.wholesalePrice}/${unitLabel}` 
       : `Retail Rate: ₹${product.pricePerMeter}/${unitLabel}`;
-    const text = `Hello Anumeet Katpiece Bhopal! I am interested in purchasing this ${isPiece ? 'item' : 'fabric'}:
+    const text = `Hello Anumeet Cutpiece Bhopal! I am interested in purchasing this ${isPiece ? 'item' : 'fabric'}:
 *Name:* ${product.name}
 *SKU:* ${product.sku}
 *Quantity:* ${quantity} ${unitPlural}

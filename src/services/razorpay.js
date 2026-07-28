@@ -28,9 +28,9 @@ export class RazorpaySimulation {
         <!-- Header -->
         <div class="bg-slate-900 text-white p-5 flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="h-8 w-8 rounded-lg bg-red-600 flex items-center justify-center font-bold text-lg text-white">AK</div>
+            <div class="h-8 w-8 rounded-lg bg-red-600 flex items-center justify-center font-bold text-lg text-white">AC</div>
             <div>
-              <h3 class="font-bold text-sm leading-tight">${this.options.name || 'ANUMEET KATPIECE'}</h3>
+              <h3 class="font-bold text-sm leading-tight">${this.options.name || 'ANUMEET CUTPIECE'}</h3>
               <p class="text-xs text-slate-400">Secure Payment Gateway</p>
             </div>
           </div>

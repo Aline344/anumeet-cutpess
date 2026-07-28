@@ -111,7 +111,7 @@ export default function Checkout() {
         key: "rzp_test_demokey12345",
         amount: Math.round(total * 100), // in paise
         currency: "INR",
-        name: "ANUMEET KATPIECE",
+        name: "ANUMEET CUTPIECE",
         description: `Order Payment for ${formData.fullName}`,
         image: "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&q=80&w=200",
         handler: function (response) {
@@ -157,7 +157,7 @@ export default function Checkout() {
       
       const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       
-      const whatsappMessage = `🛍️ *NEW FABRIC ORDER ON ANUMEET KATPIECE*
+      const whatsappMessage = `🛍️ *NEW FABRIC ORDER ON ANUMEET CUTPIECE*
 ---------------------------------------
 *Order ID:* ${order.id}
 *Customer Name:* ${order.userName}
@@ -179,7 +179,7 @@ ${itemsText}
 - Subtotal: ₹${subtotal.toFixed(0)}
 - Order Total: ₹${order.totalAmount.toFixed(0)}
 ---------------------------------------
-Thank you for shopping with Anumeet Katpiece Bhopal!`;
+Thank you for shopping with Anumeet Cutpiece Bhopal!`;
 
       const whatsappUrl = `https://wa.me/919131264893?text=${encodeURIComponent(whatsappMessage)}`;
       window.open(whatsappUrl, '_blank');

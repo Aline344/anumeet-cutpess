@@ -104,7 +104,7 @@ export default function Navbar() {
               <Logo className="h-9 w-9 shrink-0" />
               <div className="flex flex-col">
                 <span className="font-extrabold text-base md:text-lg tracking-[0.15em] font-playfair leading-none text-slate-900 group-hover:text-gold transition-colors">ANUMEET</span>
-                <span className="text-[8px] font-bold tracking-[0.45em] text-gold uppercase leading-none mt-1">KATPIECE</span>
+                <span className="text-[8px] font-bold tracking-[0.45em] text-gold uppercase leading-none mt-1">CUTPIECE</span>
               </div>
             </Link>
 

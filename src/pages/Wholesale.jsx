@@ -33,7 +33,7 @@ export default function Wholesale() {
     showToast("Wholesale inquiry submitted successfully! Our Bhopal manager will call you shortly.", "success");
 
     // Compose WhatsApp prefilled link for B2B Sourcing
-    const text = `Hello Anumeet Katpiece! I'm submitting a wholesale B2B Sourcing inquiry:
+    const text = `Hello Anumeet Cutpiece! I'm submitting a wholesale B2B Sourcing inquiry:
 *Name:* ${formData.name}
 *Business Type:* ${formData.businessType}
 *Location:* ${formData.city}

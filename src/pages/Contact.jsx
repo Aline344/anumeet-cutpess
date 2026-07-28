@@ -29,7 +29,7 @@ export default function Contact() {
   const contactCards = [
     { icon: <Phone size={20} className="text-red-600" />, label: "Call Store Desk", value: "+91 9131264893", sub: "11:00 AM - 8:30 PM (Mon-Sat)" },
     { icon: <MessageCircle size={20} className="text-emerald-500" />, label: "WhatsApp Support", value: "+91 9131264893", sub: "Fastest B2B Catalog inquiries" },
-    { icon: <Mail size={20} className="text-red-600" />, label: "Email Queries", value: "info@anumeetkatpiece.com", sub: "Business quotes and orders invoices" },
+    { icon: <Mail size={20} className="text-red-600" />, label: "Email Queries", value: "info@anumeetcutpiece.com", sub: "Business quotes and orders invoices" },
     { icon: <Clock size={20} className="text-amber-500" />, label: "Store Hours", value: "11:00 AM - 8:30 PM", sub: "Sundays: Closed for stocking" }
   ];
 
@@ -130,7 +130,7 @@ export default function Contact() {
             <span className="bg-luxury-gold/20 text-luxury-gold text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-luxury-gold/20 inline-block">
               Physical Boutique Location
             </span>
-            <h3 className="text-xl md:text-2xl font-extrabold uppercase tracking-wide">ANUMEET KATPIECE Showroom</h3>
+            <h3 className="text-xl md:text-2xl font-extrabold uppercase tracking-wide">ANUMEET CUTPIECE Showroom</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
               Makan No. 13, Subhash Nagar Phase-1, Near Subhash Nagar Station Road, Bhopal, Madhya Pradesh, 462023.
             </p>
@@ -152,7 +152,7 @@ export default function Contact() {
                 📍
               </div>
               <div className="bg-slate-900/90 border border-white/10 p-3 rounded-xl max-w-xs shadow-xl backdrop-blur-sm">
-                <h4 className="font-extrabold text-[10px] text-white uppercase tracking-wider leading-none">ANUMEET KATPIECE</h4>
+                <h4 className="font-extrabold text-[10px] text-white uppercase tracking-wider leading-none">ANUMEET CUTPIECE</h4>
                 <p className="text-[8px] text-slate-400 mt-1">Makan No. 13, Subhash Nagar, Bhopal</p>
                 <a 
                   href="https://maps.google.com/?q=Subhash+Nagar+Bhopal" 

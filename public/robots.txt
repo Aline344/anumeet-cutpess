@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://anumeetkatpiece.com/sitemap.xml
+Sitemap: https://anumeetcutpiece.com/sitemap.xml
