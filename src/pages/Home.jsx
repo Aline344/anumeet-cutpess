@@ -6,7 +6,7 @@ import {
   ArrowRight, Star, ShoppingBag, ShieldCheck, Truck, Percent, 
   Sparkles, MessageCircle, Award, Database, Play, Heart, X, Check, 
   Info, Calculator, Palette, HelpCircle, FileText, ChevronRight, 
-  MapPin, Phone, Mail, Clock, ExternalLink, Compass 
+  MapPin, Phone, Mail, Clock, ExternalLink, Compass, Scissors 
 } from 'lucide-react';
 import { db } from '../services/firebase';
 import { useCart } from '../contexts/CartContext';
@@ -205,13 +205,17 @@ export default function Home() {
   // Get color-filtered products
   const getColorFilteredProducts = () => {
     if (selectedColor === 'all') {
-      return products.slice(0, 4);
+      return products;
     }
     return products.filter(p => {
-      const matchName = p.color && p.color.toLowerCase().includes(selectedColor.toLowerCase());
-      const matchCat = p.subCategory && p.subCategory.toLowerCase().includes(selectedColor.toLowerCase());
+      const matchName = (p.color && p.color.toLowerCase().includes(selectedColor.toLowerCase())) || 
+                        (p.name && p.name.toLowerCase().includes(selectedColor.toLowerCase())) ||
+                        (p.description && p.description.toLowerCase().includes(selectedColor.toLowerCase()));
+      const matchCat = (p.subCategory && p.subCategory.toLowerCase().includes(selectedColor.toLowerCase())) ||
+                       (p.category && p.category.toLowerCase().includes(selectedColor.toLowerCase())) ||
+                       (p.fabricType && p.fabricType.toLowerCase().includes(selectedColor.toLowerCase()));
       return matchName || matchCat;
-    }).slice(0, 4);
+    });
   };
 
   // ✦ FABRIC BUYING GUIDES ✦
@@ -346,7 +350,7 @@ export default function Home() {
   };
 
   return (
-    <div className="space-y-16 md:space-y-24 pb-16 md:pb-24 font-inter bg-white">
+    <div className="space-y-10 md:space-y-14 pb-10 md:pb-14 font-inter bg-secondary">
       
       {/* 1. TOP HEADER NOTIFICATION TICKER */}
       <div className="w-full bg-[#B71C1C] text-white py-3 px-4 relative overflow-hidden border-b border-black/5 z-30 font-inter">
@@ -368,7 +372,7 @@ export default function Home() {
       </div>
 
       {/* 2. SPLIT HERO BANNER SECTION (Premium & Bright Collection) */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-stone-50 border-b border-slate-100 min-h-[75vh] flex items-center pt-24 pb-16 px-4 md:px-8 lg:px-16">
+      <section className="relative overflow-hidden border-b border-black/5 min-h-[70vh] flex items-center pt-20 pb-12 px-4 md:px-8 lg:px-16 bg-secondary">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Text Column - Bright & High Contrast */}
@@ -378,7 +382,7 @@ export default function Home() {
               <span>Premium Collection 2026</span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-slate-900">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 font-playfair">
               Premium Fabrics <br />
               <span className="text-[#B71C1C]">For Every Stitch.</span>
             </h1>
@@ -404,7 +408,7 @@ export default function Home() {
             </div>
 
             {/* Micro Trust badges under CTAs */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100 text-left">
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 text-left">
               <div className="space-y-1">
                 <span className="text-[10px] font-extrabold text-slate-900 uppercase block">10,000+ Meters</span>
                 <span className="text-[9px] text-slate-500 block font-normal">Premium ready stock</span>
@@ -425,8 +429,8 @@ export default function Home() {
             {/* Soft decorative color splash */}
             <div className="absolute w-[300px] h-[300px] bg-[#B71C1C]/5 rounded-full blur-[80px] -z-10"></div>
             
-            {/* Elegant Framed rotating image */}
-            <div className="relative w-full max-w-[460px] aspect-[4/5] rounded-2xl overflow-hidden border border-slate-200/80 shadow-2xl bg-slate-50">
+            {/* Elegant Framed rotating image - styled with the mirror arch */}
+            <div className="relative w-full max-w-[420px] aspect-[4/5] mirror-arch-full overflow-hidden border border-slate-200/80 shadow-2xl bg-slate-50">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={heroIndex}
@@ -468,102 +472,126 @@ export default function Home() {
       </section>
 
       {/* 3. CURATED PROMO GRID ("Buy Premium Cut Pieces & Dupattas Online") */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 font-inter">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-8 font-inter">
         <div className="text-center space-y-2">
           <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ EXPLORE COLLECTIONS ✦</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Buy Premium Cut Pieces & Dupattas Online</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212] font-playfair">Buy Premium Cut Pieces & Dupattas Online</h2>
           <div className="h-[2.5px] w-12 bg-[#B71C1C] mx-auto mt-2"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
               title: "Premium Fabrics",
               desc: "Discover premium cut pieces for every occasion.",
               btnText: "Shop Cut Pieces",
               link: "/shop?category=Kurti Cut Pieces",
-              img: storeShelves
+              img: storeShelves,
+              icon: <Scissors size={20} className="text-[#B71C1C]" />
             },
             {
               title: "Elegant Dupattas",
               desc: "Complete every outfit with beautiful dupattas.",
               btnText: "Shop Dupattas",
               link: "/shop?category=Traditional Printed Fabrics",
-              img: sareeBanarasi
+              img: sareeBanarasi,
+              icon: <Sparkles size={20} className="text-[#B71C1C]" />
             },
             {
               title: "Combos & Offers",
               desc: "Save more with curated combo collections.",
               btnText: "Shop Combos",
               img: storeEmbroidery,
-              link: "/shop?category=Unstitched Suit Sets"
+              link: "/shop?category=Unstitched Suit Sets",
+              icon: <Percent size={20} className="text-[#B71C1C]" />
             }
           ].map((promo, idx) => (
             <div 
               key={idx}
               onClick={() => navigate(promo.link)}
-              className="group relative rounded-xl overflow-hidden aspect-[4/3] md:h-[280px] border border-slate-200 cursor-pointer shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="group cursor-pointer transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
-              <img 
-                src={promo.img} 
-                alt={promo.title} 
-                className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-6">
-                <h3 className="text-white font-extrabold text-xl tracking-wide">{promo.title}</h3>
-                <p className="text-[11px] text-slate-200 leading-relaxed font-normal mt-1 max-w-xs">
+              {/* Arched image */}
+              <div className="relative mirror-arch-top aspect-[4/5] w-full border border-black/5 bg-white overflow-hidden shadow-sm">
+                <img 
+                  src={promo.img} 
+                  alt={promo.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                {/* Overlapping Circle badge */}
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-md border border-slate-150 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+                  {promo.icon}
+                </div>
+              </div>
+              {/* White card box */}
+              <div className="bg-white pt-10 pb-6 px-5 rounded-b-2xl shadow-sm border-x border-b border-black/5 text-center flex flex-col items-center justify-center gap-2 min-h-[140px]">
+                <h3 className="font-playfair font-bold text-xl text-slate-900 tracking-wide">{promo.title}</h3>
+                <p className="text-xs text-slate-500 font-normal leading-relaxed max-w-[240px]">
                   {promo.desc}
                 </p>
-                <div className="flex items-center gap-1 text-[10px] font-bold text-white uppercase tracking-widest pt-3 group-hover:translate-x-1 transition-transform">
-                  {promo.btnText} <ArrowRight size={10} className="text-[#B71C1C]" />
-                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 4. "SHOP FABRICS BY TYPE" (Circular List) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 font-inter">
+      {/* 4. "SHOP FABRICS BY TYPE" (Arched Category Cards) */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-8 font-inter">
         <div className="text-center space-y-2">
           <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ SHOP FABRICS BY TYPE ✦</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Premium Fabrics</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212] font-playfair">Premium Fabrics</h2>
           <p className="text-xs md:text-sm text-slate-500 max-w-md mx-auto font-normal">Explore fabrics by material type, weight, and texture</p>
           <div className="h-[2.5px] w-12 bg-[#B71C1C] mx-auto mt-2"></div>
         </div>
 
-        {/* Circular list */}
-        <div className="flex items-center gap-6 overflow-x-auto pb-4 pt-2 no-scrollbar px-2 select-none justify-start md:justify-center">
-          {fabricCategories.map((cat, idx) => (
-            <div 
-              key={idx}
-              onClick={() => navigate(cat.link)}
-              className="flex flex-col items-center shrink-0 space-y-2 cursor-pointer group"
-            >
-              <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-full overflow-hidden border border-slate-200 group-hover:border-[#B71C1C]/60 shadow-sm group-hover:shadow-md transition-all duration-300 relative">
-                <img 
-                  src={cat.image} 
-                  alt={cat.name} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-[#B71C1C]/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Compass size={16} className="text-[#B71C1C]" />
+        {/* Responsive Grid of Mirror Category Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-4 pt-2">
+          {fabricCategories.map((cat, idx) => {
+            const iconsMap = [
+              <Sparkles size={16} className="text-[#B71C1C]" />, // Cotton
+              <Palette size={16} className="text-[#B71C1C]" />,  // Rayon
+              <Compass size={16} className="text-[#B71C1C]" />,  // Georgette
+              <Heart size={16} className="text-[#B71C1C]" />,    // Chiffon
+              <Award size={16} className="text-[#B71C1C]" />,    // Crepe
+              <Star size={16} className="text-[#B71C1C]" />,     // Banarasi
+              <ShieldCheck size={16} className="text-[#B71C1C]" />, // Organza
+              <Sparkles size={16} className="text-[#B71C1C]" />, // Silk
+              <ShoppingBag size={16} className="text-[#B71C1C]" /> // Fendy
+            ];
+            return (
+              <div 
+                key={idx}
+                onClick={() => navigate(cat.link)}
+                className="group cursor-pointer transition-all duration-300 hover:-translate-y-1 flex flex-col"
+              >
+                {/* Compact Arched Image */}
+                <div className="relative mirror-arch-top aspect-[4/5] w-full border border-black/5 bg-white overflow-hidden shadow-sm">
+                  <img 
+                    src={cat.image} 
+                    alt={cat.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Circular badge */}
+                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+                    {iconsMap[idx] || <Sparkles size={14} className="text-[#B71C1C]" />}
+                  </div>
+                </div>
+                {/* Compact text box */}
+                <div className="bg-white pt-6 pb-4 px-2 rounded-b-xl shadow-sm border-x border-b border-black/5 text-center flex flex-col items-center justify-center gap-0.5 min-h-[80px]">
+                  <h4 className="font-playfair font-bold text-xs sm:text-sm text-slate-800 tracking-wide group-hover:text-[#B71C1C] transition-colors leading-tight">{cat.name}</h4>
+                  <p className="text-[8px] text-slate-400 font-medium leading-tight whitespace-nowrap">{cat.tag.split("•")[0].trim()}</p>
                 </div>
               </div>
-              <div className="text-center">
-                <h4 className="text-xs font-bold text-slate-800 tracking-wide group-hover:text-[#B71C1C] transition-colors">{cat.name}</h4>
-                <p className="text-[8px] text-slate-400 font-medium whitespace-nowrap">{cat.tag.split("•")[0].trim()}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
-      {/* 5. "FIND YOUR PERFECT DUPATTA" (Dupattas by Occasion) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 font-inter">
+      {/* 5. "FIND YOUR PERFECT DUPATTA" (Dupattas by Occasion Arched Layout) */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-8 font-inter">
         <div className="text-center space-y-2">
           <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ SHOP DUPATTAS BY OCCASION ✦</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Find Your Perfect Dupatta</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212] font-playfair">Find Your Perfect Dupatta</h2>
           <p className="text-xs md:text-sm text-slate-500 max-w-md mx-auto font-normal">Elevate your look with dupattas designed for every event</p>
           <div className="h-[2.5px] w-12 bg-[#B71C1C] mx-auto mt-2"></div>
         </div>
@@ -573,67 +601,78 @@ export default function Home() {
             <div 
               key={idx}
               onClick={() => navigate(occasion.link)}
-              className="group relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:border-[#B71C1C]/30 hover:-translate-y-0.5"
+              className="group cursor-pointer transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
-              <img 
-                src={occasion.image} 
-                alt={occasion.name} 
-                className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent flex flex-col justify-end p-4">
-                <h3 className="text-white font-extrabold text-sm tracking-wide leading-tight">{occasion.name}</h3>
-                <p className="text-[8px] text-slate-300 mt-0.5 line-clamp-2 leading-snug">{occasion.desc}</p>
-                <div className="flex items-center gap-1 text-[8px] font-bold text-[#B71C1C] uppercase tracking-widest pt-2 group-hover:translate-x-0.5 transition-transform">
-                  Explore <ChevronRight size={8} />
+              {/* Arched image */}
+              <div className="relative mirror-arch-top aspect-[3/4] w-full border border-black/5 bg-white overflow-hidden shadow-sm">
+                <img 
+                  src={occasion.image} 
+                  alt={occasion.name} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+                  <Compass size={14} className="text-[#B71C1C]" />
                 </div>
+              </div>
+              {/* Text container */}
+              <div className="bg-white pt-6 pb-4 px-3 rounded-b-xl shadow-sm border-x border-b border-black/5 text-center flex flex-col items-center justify-center gap-1 min-h-[90px]">
+                <h4 className="font-playfair font-bold text-xs sm:text-sm text-slate-800 tracking-wide group-hover:text-[#B71C1C] transition-colors leading-tight">{occasion.name}</h4>
+                <p className="text-[8px] text-slate-400 font-normal line-clamp-1 leading-snug">{occasion.desc}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 6. "INSPIRED BY EVERY STYLE" (Stitch Your Style bento) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 font-inter">
+      {/* 6. "INSPIRED BY EVERY STYLE" (Stitch Your Style - Screenshot 3 Matching Bento Layout) */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-8 font-inter">
         <div className="text-center space-y-2">
           <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ STITCH YOUR STYLE ✦</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Inspired by Every Style</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212] font-playfair">Inspired by Every Style</h2>
           <p className="text-xs md:text-sm text-slate-500 max-w-md mx-auto font-normal">See how designers stitch Anumeet's fabrics into tailored masterpieces</p>
           <div className="h-[2.5px] w-12 bg-[#B71C1C] mx-auto mt-2"></div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {inspiredStyles.map((style, idx) => (
-            <div 
-              key={idx}
-              className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm group hover:shadow-md hover:border-slate-200 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div className="relative aspect-[3/4.2] overflow-hidden bg-slate-50 shrink-0">
+          {inspiredStyles.map((style, idx) => {
+            const rates = ["₹50/Meter", "₹65/Meter", "₹50/Meter", "₹70/Meter"];
+            return (
+              <div 
+                key={idx}
+                onClick={() => navigate("/shop")}
+                className="group relative rounded-2xl overflow-hidden aspect-[3/5] cursor-pointer shadow-md hover:shadow-lg transition-all duration-300 border border-black/5 hover:-translate-y-1"
+              >
                 <img 
                   src={style.image} 
                   alt={style.title} 
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                 />
-                <span className="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm text-white text-[8px] font-bold px-2 py-0.5 uppercase tracking-widest rounded-lg shadow-sm border border-slate-700">
-                  Anumeet Styled
-                </span>
+                {/* Rich Gradient Overlay matching Screenshot 3 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex flex-col justify-end p-6 text-center">
+                  <div className="flex justify-center mb-2">
+                    <Star size={14} className="fill-[#B71C1C] text-[#B71C1C]" />
+                  </div>
+                  <h4 className="font-playfair font-bold text-lg sm:text-xl text-white tracking-wide">{style.title}</h4>
+                  <p className="text-[10px] text-slate-300 mt-1 font-normal leading-relaxed">{style.desc}</p>
+                  <div className="mt-4 pt-3 border-t border-white/10 flex flex-col items-center">
+                    <span className="text-[8px] text-slate-400 uppercase tracking-widest block">Starting From</span>
+                    <span className="text-sm font-bold text-[#B71C1C] font-mono mt-0.5">{rates[idx]}</span>
+                  </div>
+                </div>
               </div>
-              <div className="p-5 space-y-1 text-left">
-                <h4 className="font-extrabold text-sm text-slate-900 tracking-wide">{style.title}</h4>
-                <p className="text-[10px] text-slate-500 font-medium">{style.desc}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       {/* 7. "WEDDING & FESTIVE FABRICS" (Celebration Edit) */}
-      <section className="bg-slate-50 text-slate-800 py-20 px-4 md:px-8 relative overflow-hidden border-t border-b border-slate-100 font-inter">
-        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+      <section className="py-10 px-4 md:px-8 relative overflow-hidden font-inter bg-transparent text-slate-800">
+        <div className="max-w-7xl mx-auto space-y-8 relative z-10">
           
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-slate-200 pb-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-slate-200 pb-4">
             <div className="space-y-2 text-center md:text-left">
               <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ CELEBRATION EDIT ✦</span>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900">Wedding & Festive Fabrics</h2>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 font-playfair">Wedding & Festive Fabrics</h2>
             </div>
             
             <Link to="/shop?fabric=Banarasi" className="text-xs font-bold uppercase tracking-wider text-[#B71C1C] hover:text-[#991B1B] flex items-center gap-2 border-b border-[#B71C1C] pb-1 transition-colors">
@@ -641,15 +680,16 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Product grid */}
+          {/* Product grid with arched mirror cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {celebrationFabrics.map((prod) => (
               <Link 
                 to={`/product/${prod.id}`}
                 key={prod.id} 
-                className="bg-white rounded-xl overflow-hidden border border-slate-100 group hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between font-inter"
+                className="group relative rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col font-inter"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-slate-50 shrink-0">
+                {/* Arched image */}
+                <div className="relative mirror-arch-top aspect-[4/5] overflow-hidden bg-slate-50 shrink-0">
                   <img 
                     src={prod.image} 
                     alt={prod.name} 
@@ -679,14 +719,15 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="p-5 space-y-2 flex-grow flex flex-col justify-between text-left">
+                {/* Details */}
+                <div className="p-4 flex-grow flex flex-col justify-between text-left">
                   <div className="space-y-1">
                     <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{prod.category}</span>
-                    <h3 className="font-extrabold text-sm text-slate-800 line-clamp-1 group-hover:text-[#B71C1C] transition-colors">{prod.name}</h3>
+                    <h3 className="font-playfair font-bold text-sm text-slate-800 line-clamp-1 group-hover:text-[#B71C1C] transition-colors">{prod.name}</h3>
                   </div>
-                  <div className="flex justify-between items-center pt-3 border-t border-slate-100">
+                  <div className="flex justify-between items-center pt-3 border-t border-slate-100 mt-3">
                     <span className="text-sm font-bold text-slate-900 font-mono">₹{prod.pricePerMeter}<span className="text-[10px] text-slate-400 font-normal">/{prod.unit === 'piece' ? 'pc' : 'm'}</span></span>
-                    <span className="text-[9px] text-emerald-600 font-bold bg-emerald-50 px-2.5 py-1 rounded border border-emerald-100 uppercase tracking-wider">Wholesale: ₹{prod.wholesalePrice}</span>
+                    <span className="text-[9px] text-emerald-600 font-bold bg-emerald-55 px-2 py-0.5 rounded border border-emerald-100 uppercase tracking-wider">Wholesale: ₹{prod.wholesalePrice}</span>
                   </div>
                 </div>
               </Link>
@@ -696,10 +737,10 @@ export default function Home() {
       </section>
 
       {/* 8. "WATCH BEFORE YOU BUY" (Cinematic Reels grid) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 font-inter">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 font-inter">
         <div className="text-center space-y-2">
           <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ SEE THE DETAILS ✦</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Watch Before You Buy</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212] font-playfair">Watch Before You Buy</h2>
           <p className="text-xs md:text-sm text-slate-500 max-w-md mx-auto font-normal">Inspect the texture, flow, and drape density of our flagship loom materials</p>
           <div className="h-[2.5px] w-12 bg-[#B71C1C] mx-auto mt-2"></div>
         </div>
@@ -734,17 +775,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9. "EXPLORE FABRICS IN YOUR FAVORITE COLORS" (Shop by Shade color filter) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-8 bg-white py-12 rounded-2xl border border-slate-100 shadow-sm font-inter">
+      {/* 9. "EXPLORE OUR COMPLETE COLLECTION" (Shop by Shade & Full Catalog Grid) */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-8 bg-transparent py-4 font-inter">
         <div className="text-center space-y-2">
-          <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ SHOP BY SHADE ✦</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Explore fabrics in your favorite colors.</h2>
-          <p className="text-xs md:text-sm text-slate-500 max-w-md mx-auto font-normal">Click a color dot below to instantly view matching fabrics</p>
+          <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ OUR COMPLETE COLLECTION ✦</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212] font-playfair">Explore Fabrics & Cut Pieces</h2>
+          <p className="text-xs md:text-sm text-slate-500 max-w-md mx-auto font-normal">Select a shade below or browse our entire premium boutique inventory</p>
           <div className="h-[2.5px] w-12 bg-[#B71C1C] mx-auto mt-2"></div>
         </div>
 
         {/* Color circle filters */}
-        <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 pt-2">
+        <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 pt-2">
           {SHADES.map((shade, idx) => (
             <button
               key={idx}
@@ -752,14 +793,14 @@ export default function Home() {
                 setSelectedColor(shade.name);
                 showToast(`Filtered store items matching shade: ${shade.label}`, "info");
               }}
-              className={`flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md ${
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md ${
                 selectedColor === shade.name 
                   ? 'border-[#B71C1C] border bg-[#B71C1C] text-white' 
-                  : 'bg-slate-50 border border-slate-200 text-slate-700 hover:border-slate-350'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:border-slate-350'
               }`}
             >
               <span 
-                className="w-3.5 h-3.5 rounded-full shrink-0 shadow-inner" 
+                className="w-3 h-3 rounded-full shrink-0 shadow-inner" 
                 style={{ 
                   background: shade.hex,
                   border: shade.name === "White" ? "1px solid #cbd5e1" : "none"
@@ -770,34 +811,53 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Dynamic Filter Output */}
+        {/* Dynamic Filter Output - Grid of Arched cards listing products one by one */}
         <div className="pt-4">
           {getColorFilteredProducts().length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {getColorFilteredProducts().map((prod) => (
-                <Link 
-                  to={`/product/${prod.id}`}
+                <div 
                   key={prod.id} 
-                  className="bg-white rounded-xl overflow-hidden border border-slate-100 group hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between font-inter"
+                  onClick={() => navigate(`/product/${prod.id}`)}
+                  className="group cursor-pointer transition-all duration-300 hover:-translate-y-1 flex flex-col bg-white rounded-2xl shadow-sm border border-black/5 overflow-hidden"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-slate-50 shrink-0">
+                  {/* Arched image */}
+                  <div className="relative mirror-arch-top aspect-[4/5] w-full border-b border-black/5 bg-slate-50 overflow-hidden shrink-0">
                     <img 
                       src={prod.image} 
                       alt={prod.name} 
                       className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500" 
                     />
-                    
+                    {prod.isBestSeller && (
+                      <span className="absolute top-4 left-4 bg-slate-900 text-white text-[8px] font-bold px-2 py-0.5 uppercase tracking-widest rounded shadow">
+                        Best Seller
+                      </span>
+                    )}
+                    {prod.isNewArrival && !prod.isBestSeller && (
+                      <span className="absolute top-4 left-4 bg-[#B71C1C] text-white text-[8px] font-bold px-2 py-0.5 uppercase tracking-widest rounded shadow">
+                        New Arrival
+                      </span>
+                    )}
+
                     {/* Action overlays */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
                       <button 
-                        onClick={(e) => handleAddToCartClick(e, prod)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          handleAddToCartClick(e, prod);
+                        }}
                         className="p-3 bg-white text-stone-900 hover:bg-[#B71C1C] hover:text-white rounded-full transition-colors cursor-pointer shadow-md hover:scale-105 duration-200"
                         aria-label="Add to Cart"
                       >
                         <ShoppingBag size={18} />
                       </button>
                       <button 
-                        onClick={(e) => handleWishlistClick(e, prod)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          handleWishlistClick(e, prod);
+                        }}
                         className={`p-3 rounded-full transition-colors cursor-pointer shadow-md hover:scale-105 duration-200 ${isInWishlist(prod.id) ? 'bg-[#B71C1C] text-white' : 'bg-white text-stone-900 hover:bg-slate-50'}`}
                         aria-label="Toggle Wishlist"
                       >
@@ -806,31 +866,66 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="p-5 space-y-2 flex-grow flex flex-col justify-between bg-white text-left">
+                  {/* Product Details Box */}
+                  <div className="p-4 flex-grow flex flex-col justify-between text-left gap-1">
                     <div className="space-y-1">
-                      <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{prod.category}</span>
-                      <h3 className="font-extrabold text-sm text-slate-800 line-clamp-1 group-hover:text-[#B71C1C] transition-colors">{prod.name}</h3>
+                      <span className="text-[9px] text-[#B71C1C] font-bold uppercase tracking-wider block">{prod.category}</span>
+                      <h3 className="font-playfair font-bold text-sm text-slate-800 line-clamp-2 group-hover:text-[#B71C1C] transition-colors leading-snug">{prod.name}</h3>
+                      
+                      {/* Specs */}
+                      <div className="flex flex-wrap items-center gap-1 text-[9px] text-slate-400 font-semibold uppercase pt-0.5">
+                        {prod.width && prod.width !== "N/A" && <span>📏 {prod.width}</span>}
+                        {prod.width && prod.width !== "N/A" && prod.weight && prod.weight !== "N/A" && <span>•</span>}
+                        {prod.weight && prod.weight !== "N/A" && <span>⚖️ {prod.weight}</span>}
+                        {prod.fabricType && <span>• 🧵 {prod.fabricType}</span>}
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center pt-3 border-t border-slate-100">
-                      <span className="text-sm font-bold text-slate-900 font-mono">₹{prod.pricePerMeter}<span className="text-[10px] text-slate-400 font-normal">/{prod.unit === 'piece' ? 'pc' : 'm'}</span></span>
-                      <span className="text-[9px] text-emerald-600 font-bold bg-emerald-50 px-2.5 py-1 rounded border border-emerald-100 uppercase tracking-wider">Wholesale: ₹{prod.wholesalePrice}</span>
+
+                    <div className="space-y-2.5 pt-3 border-t border-slate-100 mt-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-extrabold text-slate-900 font-mono">₹{prod.pricePerMeter}<span className="text-[10px] text-slate-400 font-normal">/{prod.unit === 'piece' ? 'pc' : 'm'}</span></span>
+                        <span className="text-[9px] text-emerald-600 font-bold bg-emerald-55 px-2 py-0.5 rounded border border-emerald-100 uppercase tracking-wider">Wholesale: ₹{prod.wholesalePrice}</span>
+                      </div>
+
+                      {/* Directly visible CTA buttons for instant purchasing */}
+                      <div className="grid grid-cols-2 gap-2 pt-1">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            handleAddToCartClick(e, prod);
+                          }}
+                          className="py-2 bg-slate-900 hover:bg-[#B71C1C] text-white font-bold text-[9px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1 transition-colors"
+                        >
+                          <ShoppingBag size={11} /> + Cart
+                        </button>
+                        <a 
+                          href={`https://wa.me/919131264893?text=Hello%20Anumeet%20Cutpiece,%20I'm%20interested%20in%20buying%20the%20${encodeURIComponent(prod.name)}.`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1 transition-colors shadow-sm"
+                        >
+                          <MessageCircle size={11} className="fill-current" /> WhatsApp
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded-xl space-y-2">
+            <div className="text-center py-12 border border-dashed border-slate-300 rounded-2xl bg-white space-y-2">
               <Info size={32} className="text-[#B71C1C] mx-auto" />
               <h4 className="font-bold text-slate-800">No fabric matches found.</h4>
-              <p className="text-xs text-slate-500">We drop weekly batches. Please request custom dyeing on WhatsApp.</p>
+              <p className="text-xs text-slate-500">We drop weekly batches. Please request custom dyeing or print sourcing on WhatsApp.</p>
             </div>
           )}
         </div>
       </section>
 
       {/* 10. "WHY CHOOSE CUTPIECEWALA?" (Trust Grid matching exactly) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 font-inter">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 font-inter">
         <div className="text-center space-y-2">
           <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ WHY CHOOSE US ✦</span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Why Choose Anumeet Cutpiece?</h2>
@@ -868,7 +963,7 @@ export default function Home() {
       </section>
 
       {/* 11. "CHOOSE THE RIGHT FABRIC WITH EASY EXPERT GUIDES" (Fabric Buying Guides) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 font-inter">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 font-inter">
         <div className="text-center space-y-2">
           <span className="text-[10px] font-bold tracking-[0.25em] text-[#B71C1C] uppercase">✦ FABRIC BUYING GUIDES ✦</span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#121212]">Choose the right fabric with easy expert guides.</h2>

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
 @import "tailwindcss";
 
-@theme {
+@theme{
   --color-primary: #121212;      /* Charcoal Black */
-  --color-secondary: #FFFFFF;    /* Pure White */
+  --color-secondary: #F7F4EF;    /* Warm Luxury Cream/Beige */
   --color-gold: #B71C1C;         /* Vibrant Brand Red */
   --color-gold-dark: #991B1B;    /* Dark Brand Red */
   --color-text: #212121;         /* Off-Black Text */
@@ -73,8 +73,24 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-inter);
+  font-family: var(--font-playfair);
 }
+
+/* Custom Mirror Arch Shapes */
+.mirror-arch-top {
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  overflow: hidden;
+}
+
+.mirror-arch-full {
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  overflow: hidden;
+}
+
 
 /* Luxury Scrollbar */
 ::-webkit-scrollbar {
@@ -205,3 +221,23 @@ input:focus, select:focus, textarea:focus {
 .hamburger-line {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+/* Admin Dashboard specific overrides to keep it exactly as it was (Inter font & white background) */
+.admin-dashboard,
+.admin-dashboard * {
+  font-family: var(--font-inter) !important;
+}
+.admin-dashboard h1,
+.admin-dashboard h2,
+.admin-dashboard h3,
+.admin-dashboard h4,
+.admin-dashboard h5,
+.admin-dashboard h6 {
+  font-family: var(--font-inter) !important;
+}
+
+/* Force body background to white when visiting the admin dashboard to match original style */
+body:has(.admin-dashboard) {
+  background-color: #ffffff !important;
+}
+

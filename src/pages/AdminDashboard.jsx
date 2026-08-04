@@ -10,14 +10,14 @@ export default function AdminDashboard() {
   const showToast = useToast();
   const navigate = useNavigate();
 
-  // Redirect or block if not admin
   if (!currentUser || !isAdmin) {
     return (
-      <div className="max-w-md mx-auto px-4 py-16 text-center space-y-6">
+      <div className="admin-dashboard max-w-md mx-auto px-4 py-16 text-center space-y-6">
         <div className="h-16 w-16 bg-red-50 text-red-600 border border-red-100 rounded-full flex items-center justify-center mx-auto shadow-sm">
+
           <ShieldAlert size={28} />
         </div>
-        <h2 className="text-xl font-bold uppercase text-navy-900 tracking-wide">Unauthorized Admin Access</h2>
+         <h2 className="text-xl font-bold uppercase text-navy-900 tracking-wide">Unauthorized Admin Access</h2>
         <p className="text-xs text-slate-500">You must log in with an administrator account to view the analytics panel.</p>
         <button 
           onClick={() => navigate("/account?tab=orders")}
@@ -48,7 +48,7 @@ export default function AdminDashboard() {
   const [pWidth, setPWidth] = useState("44 inches");
   const [pWeight, setPWeight] = useState("140 GSM");
   const [pColor, setPColor] = useState("");
-  const [pColorHex, setPColorHex] = useState("#000000");
+  const [pColorHex, setPColorHex] = useState("#a22b2bff");
   const [pDesc, setPDesc] = useState("");
   const [pPrice, setPPrice] = useState(120);
   const [pWholesalePrice, setPWholesalePrice] = useState(85);
@@ -177,7 +177,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-8">
+    <div className="admin-dashboard max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-8">
       {/* Overview stats top bar */}
       <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
         <div>
@@ -315,6 +315,7 @@ export default function AdminDashboard() {
                       <option value="Velvet Collection">Velvet Collection</option>
                       <option value="Chanderi Collection">Chanderi Collection</option>
                       <option value="Laces Collection">Laces Collection</option>
+                      <option value="Dyeing and Printing Material">Dyeing and Printing Material </option>
                     </select>
                   </div>
                   {/* Fabric Type */}
@@ -398,6 +399,8 @@ export default function AdminDashboard() {
               <div className="col-span-2 text-center">Retail/Wholesale</div>
               <div className="col-span-2 text-center">Stock</div>
               <div className="col-span-2 text-right">Actions</div>
+              <div className="col-span-2 text-right">orders</div>
+              
             </div>
             
             <div className="divide-y divide-slate-100">
@@ -485,6 +488,10 @@ export default function AdminDashboard() {
                       <option value="Pending">Pending</option>
                       <option value="Packed">Packed</option>
                       <option value="Shipped">Shipped</option>
+                      <option value="COD">COD Payment</option>
+                      <option value="Online Payment">Online Payment Received</option>
+                      <option value="Refund Rquested">Refund Rquested</option>
+                      <option value="Refunded">Refunded</option> 
                       <option value="Delivered">Delivered</option>
                       <option value="Cancelled">Cancelled</option>
                     </select>
@@ -506,6 +513,8 @@ export default function AdminDashboard() {
               <div className="grid grid-cols-12 p-4 bg-slate-50 font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 text-[9px]">
                 <div className="col-span-3">Coupon Code</div>
                 <div className="col-span-2 text-center">Discount %</div>
+                <div className="col-span-2 text-center">Start Date</div>
+                <div className="col-span-2 text-center">End Date</div>
                 <div className="col-span-2 text-center">Min Cart</div>
                 <div className="col-span-3">Description</div>
                 <div className="col-span-2 text-right">Action</div>
@@ -582,6 +591,8 @@ export default function AdminDashboard() {
                     <p><span className="font-bold text-navy-900">Contact:</span> {inq.name}</p>
                     <p><span className="font-bold text-navy-900">Mobile:</span> {inq.mobile}</p>
                     <p><span className="font-bold text-navy-900">Email:</span> {inq.email}</p>
+                    <p><span className="font-bold text-navy-900">Shop Name:</span> {inq.shopName}</p>
+                    <p><span className="font-bold text-navy-900">Shop Adress:</span> {inq.shopAddress}</p>
                     <p><span className="font-bold text-navy-900">City:</span> {inq.city}</p>
                     <p><span className="font-bold text-navy-900">Sourcing Model:</span> {inq.businessType}</p>
                     <p><span className="font-bold text-navy-900">Fabric Required:</span> {inq.fabricType}</p>
